@@ -4,13 +4,13 @@ namespace RPG
     public class Personagem
     {
         string nome;
-        double hp;
-        double dmg;
-        double dex;
-        double agi;
-        double def;
-        double inl;
-        public bool pode;
+        double hp; // Vida do personagem
+        double dmg;// Dano que o personagem pode causar
+        double dex;// Destreza do personagem, influencia em dano crítico
+        double agi;// Agilidade do personagem, influencia em esquiva e ordem de ataque
+        double def;// Defesa do personagem, reduz dano recebido
+        double inl;// Inteligência do personagem, influencia em dano mágico
+        double totalatb; // Atributostotal do personagem
         public Personagem()
         {
             nome = "Sem nome";
@@ -105,5 +105,6 @@ namespace RPG
                 } while (true);
             }
         }
+       
     }
 }
