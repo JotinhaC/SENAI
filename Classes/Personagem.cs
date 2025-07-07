@@ -3,6 +3,7 @@ namespace RPG
 {
     public class Personagem
     {
+        
         string nome;
         double hp; // Vida do personagem
         double dmg;// Dano que o personagem pode causar
@@ -16,10 +17,10 @@ namespace RPG
             nome = "Sem nome";
             hp = 100;
             dmg = 10;
-            dex = 5;
-            agi = 5;
-            def = 5;
-            inl = 5;
+            dex = 0;
+            agi = 0;
+            def = 0;
+            inl = 0;
         }
         public string Nome
         {
@@ -105,6 +106,21 @@ namespace RPG
                 } while (true);
             }
         }
-       
+        public void TotalAtributo(Processos processos)
+        {
+            totalatb = dex + inl + def + agi;
+            do
+            {
+                if (totalatb == 20)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Prossigamos com as suas caracteristicas, elas são limitadas a um total de 20, distribuidas entre DEX,AGI,DEF e INL");
+                    processos.SetAtributos();
+                }
+            } while (true);
+        }
     }
 }

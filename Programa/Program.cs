@@ -18,7 +18,7 @@ namespace RPG
             Personagem p1 = new Personagem();
             Processos processos = new Processos();
             await processos.criacao();
-            processos.SetAtributos();
+            p1.TotalAtributo(processos);
         }
     } 
 }

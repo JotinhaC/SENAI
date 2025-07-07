@@ -3,10 +3,10 @@ using System.Net;
 using System.Runtime.ConstrainedExecution;
 using System.Threading.Tasks;
 namespace RPG
-{
-    public class Processos
+{ 
+    public class Processos()
     {
-        Personagem p1 = new Personagem();
+        Personagem? p1 = new Personagem();
         public async Task criacao()
         {
             
@@ -21,12 +21,14 @@ namespace RPG
             Console.WriteLine($"{p1.Nome}, além disso temos também as classes. Classe é a principal função em que seu personagem está atuando, elas são definidas não por você, mas sim pelos maiores atributos do seu personagem.\nPor exemplo, se sua defesa for muito alta, então o jogo te considerará um -Guerreiro- e você receberá respectivos 'buffs' para a classe -Guerreiro-. \nEntão escolha sabiamente como aumenta seus atributos.", p1.Nome);
         }
         public Personagem SetAtributos()
-        {
+        {            
+            Console.WriteLine("Insira um valor que de exatamente 20 no total de atributos:");
             p1.Agi = 0;
             p1.Dex = 0;
             p1.Def = 0; 
             p1.Inl = 0;
             return p1;
         }
+        
     }   
 }
