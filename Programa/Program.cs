@@ -3,14 +3,15 @@ using RPG;
 using System.Threading.Tasks;
 namespace RPG
 {
-    class Program
+    class Program 
     {
         static async Task Main(string[] args)
         {
+            Personagem p1 = new Personagem();
             Processos processos = new Processos();
             await processos.criacao();
-            Console.WriteLine("Pressione qualquer tecla para sair...");
-            Console.ReadKey();
+           
+            p1.Agi = 0;
         }
     }
 }
