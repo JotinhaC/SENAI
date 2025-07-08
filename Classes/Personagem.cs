@@ -1,4 +1,5 @@
 using System;
+using System.Numerics;
 namespace RPG
 {
     public class Personagem
@@ -11,7 +12,7 @@ namespace RPG
         double agi;// Agilidade do personagem, influencia em esquiva e ordem de ataque
         double def;// Defesa do personagem, reduz dano recebido
         double inl;// Inteligência do personagem, influencia em dano mágico
-        double totalatb; // Atributostotal do personagem
+        public double totalatb; // Atributostotal do personagem
         public Personagem()
         {
             nome = "Sem nome";
@@ -32,15 +33,14 @@ namespace RPG
             get { return hp; }
             set { hp = value; }
         }
-        public double Dmg
+        public double SetDmg
         {
             get { return dmg; }
             set { dmg = value; }
         }
-        public double Dex
+        public double SetDex()
         {
-            get { return dex; }
-            set
+            double value;
             {
                Console.WriteLine("Insira sua DEX (até 10):");
                 do
@@ -52,14 +52,12 @@ namespace RPG
                         break;
                     }
                 } while (true);
-            }
+            } return dex;
         }
 
-        public double Agi
+        public double SetAgi()
         {  
-            get { return agi; }
-            set
-            { 
+            {  double value;
                 do
                 {
                     Console.WriteLine("Insira sua AGI (até 10):");
@@ -70,15 +68,15 @@ namespace RPG
                         break;
                     }
                 } while (true);
-            }
+            } return agi;
         }
-        public double Def
+        public double SetDef()
         {
-            get { return def; }
-            set
-            {
+            {    double value;
+                // Solicita ao usuário que insira o valor de DEF até 10
+                // Continua solicitando até que um valor válido seja inserido
                 do
-                 {
+                {
                     Console.WriteLine("Insira sua DEF (até 10):");
                     string? input = Console.ReadLine();
                     if (double.TryParse(input, out value) && value <= 10)
@@ -87,14 +85,13 @@ namespace RPG
                         break;
                     }
                  } while (true);
-            }
+            } return def;
         }
-        public double Inl
+        public double SetInl()
         {
-            get { return inl; }
-            set
             {
-               Console.WriteLine("Insira sua INL (até 10):");
+               double value;
+                Console.WriteLine("Insira sua INL (até 10):");
                 do
                 {
                     string? input = Console.ReadLine();
@@ -104,14 +101,16 @@ namespace RPG
                         break;
                     }
                 } while (true);
-            }
+            } return inl;
         }
-        public void TotalAtributo(Processos processos)
+        
+        public void TotalAtributo(Processos processos, Personagem p1)
         {
-            totalatb = dex + inl + def + agi;
+            
             do
             {
-                if (totalatb == 20)
+                totalatb = p1.dex + p1.inl + p1.def + p1.agi;
+                if (totalatb <= 20 && totalatb!= 0)
                 {
                     break;
                 }
@@ -121,6 +120,26 @@ namespace RPG
                     processos.SetAtributos();
                 }
             } while (true);
+        }
+        public double Inl
+        {
+            get { return inl; }
+            set { inl = value; }
+        }
+        public double Dex
+        {
+            get { return dex; }
+            set { dex = value; }
+        }
+        public double Agi
+        {
+            get { return agi; }
+            set { agi = value; }
+        }
+        public double Def
+        {
+            get { return def; }
+            set { def = value; }
         }
     }
 }

@@ -1,61 +1,56 @@
-/*using System;
+using System;
 namespace RPG
 {
-    public class CLASSES
+    public class Classes
     {
-        protected double hp;
-        protected double dmg;
-        protected double dex;
-        protected double agi;
-        protected double def;
-        protected double inl;
-    }
-    class Arqueiro : CLASSES
-    {
-        public Arqueiro()
+
+        class Arqueiro : Personagem
         {
-            hp = 100;
-            dex = 5;
-            agi = 5;
-            def = 2;
-            inl = 1;
-            dmg = agi + dex / 2.5;
+            public static void arqueiro(Personagem p1)
+            {
+
+                p1.Dex = p1.Dex + 3;
+                p1.Agi = p1.Agi + 2;
+
+            }
+        }
+        class Guerreiro : Personagem
+        {
+            public static void guerreiro(Personagem p1)
+            {
+                p1.Hp = p1.Hp + 50;
+                p1.Def = p1.Def + 5;
+                p1.Inl = p1.Inl - 3;
+            }
+        }
+        class Mago : Personagem
+        {
+            public static void mago(Personagem p1)
+            {
+
+                p1.Def = p1.Def - 10;
+                p1.Inl = p1.Inl + 10;
+            }
+        }
+        class Assassino : Personagem
+        {
+            public static void assassin(Personagem p1)
+            {
+                p1.Hp = p1.Hp - 20;
+                p1.Dex = p1.Dex + 2;
+                p1.Agi = p1.Agi + 5;
+                p1.Def = p1.Def - 10;
+            }
+        }
+        public static void SetClasse(Personagem p1)
+        {
+            if (p1.Dex >= p1.Agi && p1.Dex >= p1.Def && p1.Dex >= p1.Inl)
+            { Assassino.assassin(p1); }
+            else if (p1.Agi >= p1.Dex && p1.Agi >= p1.Def && p1.Agi >= p1.Inl)
+            { Arqueiro.arqueiro(p1); }
+            else if (p1.Def >= p1.Dex && p1.Def >= p1.Inl && p1.Def >= p1.Agi)
+            { Guerreiro.guerreiro(p1); }
+            else { Mago.mago(p1); }
         }
     }
-    class Guerreiro : CLASSES
-    {
-        public Guerreiro()
-        {
-            hp = 150;
-            dex = 2;
-            agi = 3;
-            def = 5;
-            inl = 0;
-            dmg = 10 + def / 3;
-        }
-    }
-    class Mago : CLASSES
-    {
-        public Mago()
-        {
-            hp = 100;
-            dex = 2;
-            agi = 4;
-            def = 1;
-            inl = 5;
-            dmg = inl - 5;
-        }
-    }
-    class Assasino : CLASSES
-    {
-        public Assasino()
-        {
-            hp = 100;
-            dex = 6;
-            agi = 6;
-            def = 0;
-            inl = 0;
-            dmg = dex + agi / 2;
-        }
-    }
-}*/
+}

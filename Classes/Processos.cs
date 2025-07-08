@@ -20,14 +20,14 @@ namespace RPG
             await Task.Delay(3000);
             Console.WriteLine($"{p1.Nome}, além disso temos também as classes. Classe é a principal função em que seu personagem está atuando, elas são definidas não por você, mas sim pelos maiores atributos do seu personagem.\nPor exemplo, se sua defesa for muito alta, então o jogo te considerará um -Guerreiro- e você receberá respectivos 'buffs' para a classe -Guerreiro-. \nEntão escolha sabiamente como aumenta seus atributos.", p1.Nome);
         }
-        public Personagem SetAtributos()
+        public void SetAtributos()
         {            
             Console.WriteLine("Insira um valor que de exatamente 20 no total de atributos:");
-            p1.Agi = 0;
-            p1.Dex = 0;
-            p1.Def = 0; 
-            p1.Inl = 0;
-            return p1;
+            p1.Agi = p1.SetAgi();
+            p1.Dex = p1.SetDex();
+            p1.Def = p1.SetDef(); 
+            p1.Inl = p1.SetInl();
+            
         }
         
     }   
