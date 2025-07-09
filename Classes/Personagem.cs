@@ -6,22 +6,24 @@ namespace RPG
     {
         
         string nome;
+        string classe; // Classe do personagem, pode ser Guerreiro, Mago, Arqueiro, etc.
         double hp; // Vida do personagem
         double dmg;// Dano que o personagem pode causar
         double dex;// Destreza do personagem, influencia em dano crítico
         double agi;// Agilidade do personagem, influencia em esquiva e ordem de ataque
         double def;// Defesa do personagem, reduz dano recebido
         double inl;// Inteligência do personagem, influencia em dano mágico
-        public double totalatb; // Atributostotal do personagem
-        public Personagem()
+        public bool totalatb; // Atributostotal do personagem, deu erro, to jogando de lado por enquanto
+        public void Status()
         {
-            nome = "Sem nome";
-            hp = 100;
-            dmg = 10;
-            dex = 0;
-            agi = 0;
-            def = 0;
-            inl = 0;
+            Console.WriteLine($"Nome: {Nome}");
+            Console.WriteLine($"Classe: {Classe}");
+            Console.WriteLine($"HP: {Hp}");
+            Console.WriteLine($"Dano: {Dmg}");
+            Console.WriteLine($"Destreza: {Dex}");
+            Console.WriteLine($"Agilidade: {Agi}");
+            Console.WriteLine($"Defesa: {Def}");
+            Console.WriteLine($"Inteligência: {Inl}");
         }
         public string Nome
         {
@@ -33,12 +35,12 @@ namespace RPG
             get { return hp; }
             set { hp = value; }
         }
-        public double SetDmg
+        public double Dmg
         {
             get { return dmg; }
             set { dmg = value; }
         }
-        public double SetDex()
+        public void SetDex()
         {
             double value;
             {
@@ -52,10 +54,10 @@ namespace RPG
                         break;
                     }
                 } while (true);
-            } return dex;
+            }
         }
 
-        public double SetAgi()
+        public void SetAgi()
         {  
             {  double value;
                 do
@@ -68,9 +70,9 @@ namespace RPG
                         break;
                     }
                 } while (true);
-            } return agi;
+            } 
         }
-        public double SetDef()
+        public void SetDef()
         {
             {    double value;
                 // Solicita ao usuário que insira o valor de DEF até 10
@@ -85,9 +87,9 @@ namespace RPG
                         break;
                     }
                  } while (true);
-            } return def;
+            } 
         }
-        public double SetInl()
+        public void SetInl()
         {
             {
                double value;
@@ -101,26 +103,35 @@ namespace RPG
                         break;
                     }
                 } while (true);
-            } return inl;
+            } 
         }
-        
-        public void TotalAtributo(Processos processos, Personagem p1)
+        /*public void TotalAtributo(Processos processos, Personagem p1)
         {
-            
-            do
+            while (true)
             {
-                totalatb = p1.dex + p1.inl + p1.def + p1.agi;
-                if (totalatb <= 20 && totalatb!= 0)
+                void Totalatb(Personagem p1)
+                    {
+                    totalatb= p1.Agi + p1.Dex + p1.Inl + p1.Def <= 20 && p1.Agi + p1.Dex + p1.Inl + p1.Def != 0;
+                    }
+
+                if (totalatb == false)
                 {
-                    break;
+                    Console.WriteLine("Não ultrapasse o limite de 20 atributos totais e também não zere seus atributos!");
+                    p1.Inl = 0;
+                    p1.Dex = 0;
+                    p1.Def = 0;
+                    p1.Agi = 0;
+                    Console.WriteLine("Reiniciando atributos...");
+                    processos.SetAtributos();
+                    // Após SetAtributos, o loop volta e reavalia totalatb com os novos valores
                 }
                 else
                 {
-                    Console.WriteLine("Prossigamos com as suas caracteristicas, elas são limitadas a um total de 20, distribuidas entre DEX,AGI,DEF e INL");
-                    processos.SetAtributos();
+                    Console.WriteLine("Atributos definidos com sucesso!");
+                    break;
                 }
-            } while (true);
-        }
+            }
+        }*/
         public double Inl
         {
             get { return inl; }
@@ -140,6 +151,11 @@ namespace RPG
         {
             get { return def; }
             set { def = value; }
+        }
+        public string Classe
+        {
+            get { return classe; }
+            set { classe = value; }
         }
     }
 }

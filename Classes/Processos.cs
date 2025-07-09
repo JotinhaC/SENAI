@@ -22,11 +22,11 @@ namespace RPG
         }
         public void SetAtributos()
         {            
-            Console.WriteLine("Insira um valor que de exatamente 20 no total de atributos:");
-            p1.Agi = p1.SetAgi();
-            p1.Dex = p1.SetDex();
-            p1.Def = p1.SetDef(); 
-            p1.Inl = p1.SetInl();
+            
+            p1.SetAgi();
+            p1.SetDex();
+            p1.SetDef(); 
+            p1.SetInl();
             
         }
         
