@@ -1,34 +1,84 @@
 using System;
+using System.Diagnostics;
 using System.Net;
 using System.Runtime.ConstrainedExecution;
 using System.Threading.Tasks;
 namespace RPG
-{ 
-    public class Processos()
+{
+    public class Processos
     {
-        Personagem? p1 = new Personagem();
-        public async Task criacao()
-        {
-            
-            Console.WriteLine("-------------Bem Vindo-------------");
-            Console.WriteLine("\nPara iniciarmos sua jornada, você deve, como fez, criar um personagem, por isso iniciemos com um nome, um nome que será lembrado por toda história. Insira-o:");
-            p1.Nome = Console.ReadLine();
-            await Task.Delay(1500);
-            Console.WriteLine($"Muito bem {p1.Nome}, acreditamos no seu potencial de se tornar uma grande lenda, mas precisamos definir mais algumas coisas.");
-            await Task.Delay(1500);
-            Console.WriteLine("Você deve definir seus atributos, que são: Destreza, Agilidade, Defesa e Inteligência.\nCada um desses atributos tem uma função específica no jogo, e você deve escolher como distribuí-los.");
-            await Task.Delay(3000);
-            Console.WriteLine($"{p1.Nome}, além disso temos também as classes. Classe é a principal função em que seu personagem está atuando, elas são definidas não por você, mas sim pelos maiores atributos do seu personagem.\nPor exemplo, se sua defesa for muito alta, então o jogo te considerará um -Guerreiro- e você receberá respectivos 'buffs' para a classe -Guerreiro-. \nEntão escolha sabiamente como aumenta seus atributos.", p1.Nome);
-        }
-        public void SetAtributos()
-        {            
-            
-            p1.SetAgi();
-            p1.SetDex();
-            p1.SetDef(); 
-            p1.SetInl();
-            
-        }
+        Personagem? heroi = new Personagem();
+        Random random = new Random();
+        Classes Classes = new Classes();
         
-    }   
+        public int introdução()
+        {
+
+            Console.WriteLine("-------------Bem Vindo-------------");
+            Console.WriteLine("O que fazer agora?");
+            Console.WriteLine("1 - Criar Personagem");
+            Console.WriteLine("2 - Guia de Atributos");
+            Console.WriteLine("3 - Prosseguir com jornada(deve cirar um personagem antes)");
+            Console.WriteLine("4 - Sair do jogo");
+            int a = Convert.ToInt32(Console.ReadLine());
+            return a;
+        }
+        public async Task Guia()
+        {
+            Console.WriteLine("-------------Guia de Atributos-------------");
+            await Task.Delay(1000);
+            Console.WriteLine("\nAtributos do Personagem:");
+            await Task.Delay(1000);
+            Console.WriteLine("HP: Representa a vida do personagem, se chegar a 0, o personagem morre.");
+            await Task.Delay(1000);
+            Console.WriteLine("Destreza: Influencia no dano crítico causado pelo personagem.");
+            await Task.Delay(1000);
+            Console.WriteLine("Agilidade: Influencia na esquiva e na não implementada ordem de ataque do personagem.");
+            await Task.Delay(1000);
+            Console.WriteLine("Defesa: Reduz o dano recebido pelo personagem.");
+            await Task.Delay(1000);
+            Console.WriteLine("Inteligência: Influencia no dano mágico causado pelo personagem.");
+            await Task.Delay(1000);
+        }
+        public async Task criacao(Personagem heroi,Processos processos)
+        {
+            Console.WriteLine("\nPara iniciarmos sua jornada você deve criar um personagem, por isso iniciemos com um nome, um nome que será lembrado por toda história. Insira-o:");
+            heroi.Nome = Console.ReadLine();
+            await Task.Delay(1500);
+            Console.WriteLine($"Muito bem {heroi.Nome}, acreditamos no seu potencial de se tornar uma grande lenda, mas precisamos definir mais algumas coisas.\n");
+            await Task.Delay(1500);
+            heroi.SetAgi();
+            heroi.SetDex();
+            heroi.SetDef();
+            heroi.SetInl();
+            heroi.TotalAtributo(processos, heroi);
+            Classes.SetClasse(heroi);
+            Console.WriteLine("Sua classe é: " + heroi.Classe);
+        }
+        public void SetAtributos(Personagem heroi)
+        {
+
+            heroi.SetAgi();
+            heroi.SetDex();
+            heroi.SetDef();
+            heroi.SetInl();
+
+        }
+
+        public double CalcmaiorAtb(Personagem heroi)
+        {
+            heroi.MaiorAtb = Math.MaxMagnitude(Math.MaxMagnitude(Math.MaxMagnitude(Math.MaxMagnitude(heroi.Dex, heroi.Agi), Math.MaxMagnitude(heroi.Def, heroi.Inl)), Math.MaxMagnitude(Math.MaxMagnitude(heroi.Dex, heroi.Inl), Math.MaxMagnitude(heroi.Dex, heroi.Def))), Math.MaxMagnitude(Math.MaxMagnitude(Math.MaxMagnitude(heroi.Agi, heroi.Inl), Math.MaxMagnitude(heroi.Agi, heroi.Def)), Math.MaxMagnitude(heroi.Def, heroi.Agi))); 
+               return heroi.MaiorAtb;
+        }
+        public void CriarInimigo(Personagem vilao, int i)
+        {
+            vilao.Nome = $"Vilão{i}";
+            vilao.Hp = random.Next(50, 200); 
+            vilao.Dex = random.Next(0, 15);
+            vilao.Agi = random.Next(0, 15);
+            vilao.Def = random.Next(0, 15);
+            vilao.Inl = random.Next(0, 15);
+            Console.WriteLine($"Um inimigo apareceu!(OG) O nome dele é {vilao.Nome} e ele tem {vilao.Hp} de HP.");
+        }
+    }
 }

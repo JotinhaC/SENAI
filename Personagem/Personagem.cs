@@ -13,18 +13,34 @@ namespace RPG
         double agi;// Agilidade do personagem, influencia em esquiva e ordem de ataque
         double def;// Defesa do personagem, reduz dano recebido
         double inl;// Inteligência do personagem, influencia em dano mágico
-        public bool totalatb; // Atributostotal do personagem, deu erro, to jogando de lado por enquanto
+        public double totalatb; // Atributostotal do personagem, deu erro, to jogando de lado por enquanto
+        double maiorAtb;
+        
+        public Personagem()
+        {
+            nome = "Desconhecido";
+            classe = "";
+            hp = 100;
+            dmg = 0;
+            dex = 0;
+            agi = 0;
+            def = 0;
+            inl = 0;
+            totalatb = 0;
+            maiorAtb = 0;
+        }
         public void Status()
         {
             Console.WriteLine($"Nome: {Nome}");
             Console.WriteLine($"Classe: {Classe}");
             Console.WriteLine($"HP: {Hp}");
-            Console.WriteLine($"Dano: {Dmg}");
             Console.WriteLine($"Destreza: {Dex}");
             Console.WriteLine($"Agilidade: {Agi}");
             Console.WriteLine($"Defesa: {Def}");
             Console.WriteLine($"Inteligência: {Inl}");
         }
+ 
+
         public string Nome
         {
             get { return nome; }
@@ -105,33 +121,28 @@ namespace RPG
                 } while (true);
             } 
         }
-        /*public void TotalAtributo(Processos processos, Personagem p1)
+        void Totalatb(Personagem heroi)
         {
-            while (true)
+            totalatb = heroi.Agi + heroi.Dex + heroi.Inl + heroi.Def;
+        }
+        public void TotalAtributo(Processos processos, Personagem heroi)
+        {
+            Totalatb(heroi);
+            while (totalatb > 20 || totalatb == 0)
             {
-                void Totalatb(Personagem p1)
-                    {
-                    totalatb= p1.Agi + p1.Dex + p1.Inl + p1.Def <= 20 && p1.Agi + p1.Dex + p1.Inl + p1.Def != 0;
-                    }
-
-                if (totalatb == false)
-                {
-                    Console.WriteLine("Não ultrapasse o limite de 20 atributos totais e também não zere seus atributos!");
-                    p1.Inl = 0;
-                    p1.Dex = 0;
-                    p1.Def = 0;
-                    p1.Agi = 0;
-                    Console.WriteLine("Reiniciando atributos...");
-                    processos.SetAtributos();
-                    // Após SetAtributos, o loop volta e reavalia totalatb com os novos valores
-                }
-                else
-                {
-                    Console.WriteLine("Atributos definidos com sucesso!");
-                    break;
-                }
-            }
-        }*/
+                Totalatb(heroi);
+                Console.WriteLine("Não ultrapasse o limite de 20 atributos totais e também não zere seus atributos!");
+                heroi.Inl = 0;
+                heroi.Dex = 0;
+                heroi.Def = 0;
+                heroi.Agi = 0;
+                Console.WriteLine("Reiniciando atributos...");
+                processos.SetAtributos(heroi);
+                Totalatb(heroi);
+            }    
+            Console.WriteLine("Atributos definidos com sucesso!");        
+        }
+        
         public double Inl
         {
             get { return inl; }
@@ -157,5 +168,6 @@ namespace RPG
             get { return classe; }
             set { classe = value; }
         }
+        public double MaiorAtb { get;  set; }
     }
 }

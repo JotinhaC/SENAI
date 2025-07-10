@@ -1,30 +1,59 @@
-﻿using System;
-using RPG;
-using System.Threading.Tasks;
+﻿using RPG;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
-using System.IO;
-using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 namespace RPG
 
-{
-    class Program 
-    {  
+{   
+    class Program
+    {
+        Personagem heroi = new Personagem();
+        Personagem vilao = new Personagem();
+        Processos processos = new Processos();
+        CombateP combate = new CombateP();
+
+        int opc;
+        public async Task Menu()
+        {
+            do
+            {
+                opc = processos.introdução();
+                switch (opc)
+                {
+                    case 1:
+                        await processos.criacao(heroi, processos);
+                        break;
+                    case 2:
+                        await processos.Guia();
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        Console.WriteLine("Obrigado por jogar! Até a proxima!");
+                        return;
+                }
+            } while (opc != 3);
+        }
         static async Task Main(string[] args)
         {
-            Personagem p1 = new Personagem();
+            
+            Personagem heroi = new Personagem();
+            Personagem vilao = new Personagem();
             Processos processos = new Processos();
-            //await processos.criacao();
-            p1.SetAgi();
-            p1.SetDex();
-            p1.SetDef();
-            p1.SetInl();
-            //p1.TotalAtributo(processos, p1);
-            Classes.SetClasse(p1);
-            Console.WriteLine("Sua classe é: " + p1.Classe);
+            CombateP combate = new CombateP();
+           
+            processos.CriarInimigo(vilao, 1);
+            combate.COMBATE(processos,heroi, vilao);
+            
+
         }
     } 
 }
