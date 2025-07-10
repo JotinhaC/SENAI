@@ -15,6 +15,8 @@ namespace RPG
         double inl;// Inteligência do personagem, influencia em dano mágico
         public double totalatb; // Atributostotal do personagem, deu erro, to jogando de lado por enquanto
         double maiorAtb;
+        double xp;
+        double nivel;
         
         public Personagem()
         {
@@ -142,7 +144,33 @@ namespace RPG
             }    
             Console.WriteLine("Atributos definidos com sucesso!");        
         }
-        
+        public void NivelP(Personagem heroi)
+        {
+            if (heroi.Xp < 100)
+            { heroi.Nivel = 1; }
+            else if (heroi.Xp >= 100)
+            { heroi.Nivel += 1;  Console.WriteLine($"Parabéns, vc subiu de Nivel! Nível {heroi.Nivel}");  heroi.Dex += 5; heroi.Agi += 5; heroi.Def += 5; heroi.Inl += 5; heroi.Hp += 5; }
+            else if (heroi.Xp >= 200)
+            { heroi.Nivel += 1; Console.WriteLine($"Parabéns, vc subiu de Nivel! Nível {heroi.Nivel}"); heroi.Dex += 5; heroi.Agi += 5; heroi.Def += 5; heroi.Inl += 5; heroi.Hp += 5; }
+            else if (heroi.Xp >= 350)
+            { heroi.Nivel += 1; Console.WriteLine($"Parabéns, vc subiu de Nivel! Nível {heroi.Nivel}"); heroi.Dex += 5; heroi.Agi += 5; heroi.Def += 5; heroi.Inl += 5; heroi.Hp += 5; }
+            else if (heroi.Xp >= 500)
+            { heroi.Nivel += 1; Console.WriteLine($"Parabéns, vc subiu de Nivel! Nível {heroi.Nivel}"); heroi.Dex += 5; heroi.Agi += 5; heroi.Def += 5; heroi.Inl += 5; heroi.Hp += 5; }
+            else if (heroi.Xp >= 650)
+            { heroi.Nivel += 1; Console.WriteLine($"Parabéns, vc subiu de Nivel! Nível {heroi.Nivel}"); heroi.Dex += 5; heroi.Agi += 5; heroi.Def += 5; heroi.Inl += 5; heroi.Hp += 5; }
+            else if (heroi.Xp >= 800)
+            { heroi.Nivel += 1; Console.WriteLine($"Parabéns, vc subiu de Nivel! Nível {heroi.Nivel}"); heroi.Dex += 5; heroi.Agi += 5; heroi.Def += 5; heroi.Inl += 5; heroi.Hp += 5; }
+            else if (heroi.Xp >= 1000)
+            { heroi.Nivel += 1; Console.WriteLine($"Parabéns, vc subiu de Nivel! Nível {heroi.Nivel}"); heroi.Dex += 5; heroi.Agi += 5; heroi.Def += 5; heroi.Inl += 5; heroi.Hp += 5; }
+            else if (heroi.Xp >= 1200)
+            { heroi.Nivel += 1; Console.WriteLine($"Parabéns, vc subiu de Nivel! Nível {heroi.Nivel}"); heroi.Dex += 5; heroi.Agi += 5; heroi.Def += 5; heroi.Inl += 5; heroi.Hp += 5; }
+            else if (heroi.Xp >= 1400)
+            { heroi.Nivel += 1; Console.WriteLine($"Parabéns, vc subiu de Nivel! Nível {heroi.Nivel}"); heroi.Dex += 5; heroi.Agi += 5; heroi.Def += 5; heroi.Inl += 5; heroi.Hp += 5; }
+        }
+        public void CalcXp(Personagem heroi, Personagem vilao)
+        {
+            heroi.Xp += vilao.Hp - vilao.Hp * 0.25;
+        }
         public double Inl
         {
             get { return inl; }
@@ -169,5 +197,15 @@ namespace RPG
             set { classe = value; }
         }
         public double MaiorAtb { get;  set; }
+        public double Xp
+        {
+            get { return xp; }
+            set { xp = value; } 
+        }
+        public double Nivel
+        {
+            get; set;
+        }
     }
+    
 }

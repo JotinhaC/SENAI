@@ -20,9 +20,16 @@ namespace RPG
         Processos processos = new Processos();
         CombateP combate = new CombateP();
 
-        int opc;
-        public async Task Menu()
+        
+        static async Task Main(string[] args)
         {
+            
+            Personagem heroi = new Personagem();
+            Personagem vilao = new Personagem();
+            Processos processos = new Processos();
+            CombateP combate = new CombateP();
+            int opc;
+       
             do
             {
                 opc = processos.introdução();
@@ -41,16 +48,9 @@ namespace RPG
                         return;
                 }
             } while (opc != 3);
-        }
-        static async Task Main(string[] args)
-        {
-            
-            Personagem heroi = new Personagem();
-            Personagem vilao = new Personagem();
-            Processos processos = new Processos();
-            CombateP combate = new CombateP();
+       
            
-            processos.CriarInimigo(vilao, 1);
+            processos.CriarInimigo(heroi, vilao, 1);
             combate.COMBATE(processos,heroi, vilao);
             
 

@@ -70,7 +70,7 @@ namespace RPG
             heroi.MaiorAtb = Math.MaxMagnitude(Math.MaxMagnitude(Math.MaxMagnitude(Math.MaxMagnitude(heroi.Dex, heroi.Agi), Math.MaxMagnitude(heroi.Def, heroi.Inl)), Math.MaxMagnitude(Math.MaxMagnitude(heroi.Dex, heroi.Inl), Math.MaxMagnitude(heroi.Dex, heroi.Def))), Math.MaxMagnitude(Math.MaxMagnitude(Math.MaxMagnitude(heroi.Agi, heroi.Inl), Math.MaxMagnitude(heroi.Agi, heroi.Def)), Math.MaxMagnitude(heroi.Def, heroi.Agi))); 
                return heroi.MaiorAtb;
         }
-        public void CriarInimigo(Personagem vilao, int i)
+        public void CriarInimigo(Personagem heroi, Personagem vilao, int i)
         {
             vilao.Nome = $"Vilão{i}";
             vilao.Hp = random.Next(50, 200); 
@@ -79,6 +79,13 @@ namespace RPG
             vilao.Def = random.Next(0, 15);
             vilao.Inl = random.Next(0, 15);
             Console.WriteLine($"Um inimigo apareceu!(OG) O nome dele é {vilao.Nome} e ele tem {vilao.Hp} de HP.");
+            heroi.CalcXp(heroi, vilao);
+        }
+        public void CalcNivel(Personagem heroi,Personagem vilao)
+        {
+            heroi.CalcXp(heroi, vilao);
+            heroi.NivelP(heroi);
+            
         }
     }
 }

@@ -96,6 +96,8 @@ namespace RPG
             else if (vilao.Hp <= 0)
             {
                 Console.WriteLine($"{vilao.Nome} foi derrotado! Parabéns pela conquista!");
+                Console.WriteLine($"Você recebeu {heroi.Xp} XP ");
+                heroi.NivelP(heroi);
             }
 
         }
